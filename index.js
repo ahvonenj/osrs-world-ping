@@ -24,23 +24,23 @@ promiseForeach.each(hosts,
 		}
 	],
 
-	(ar, host) =>
+	(arrayResult, host) =>
 	{
 		return {
 			world: host.world,
-			ping: ar[0].time + 'ms'
+			ping: arrayResult[0].time + 'ms'
 		}
 	},
 
-	(err, nl) =>
+	(err, resolvedHosts) =>
 	{
 		if(err)
 		{
-			console.error('err');
+			console.error('Error');
 			return;
 		}
 
-		console.table(nl.sort((a, b) =>
+		console.table(resolvedHosts.sort((a, b) =>
 		{
 			if(parseInt(a.ping) < parseInt(b.ping))
 				return -1;
